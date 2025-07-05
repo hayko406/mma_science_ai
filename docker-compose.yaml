@@ -1,0 +1,28 @@
+services:
+  fastapi:
+    image: thayki/fastapi_mma_science
+    ports:
+      - "${FASTAPI_PORT:-8001}:${FASTAPI_PORT:-8001}"
+    env_file:
+      - .env
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    profiles: ["gpu"]
+    restart: unless-stopped
+
+  gradio:
+    image: thayki/gradio_mma_science
+    ports:
+      - "${GRADIO_PORT:-8002}:${GRADIO_PORT:-8002}"
+    env_file:
+      - .env
+    environment:
+      - FASTAPI_PORT=${FASTAPI_PORT}
+    depends_on:
+      - fastapi
+    restart: unless-stopped
