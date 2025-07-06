@@ -1,0 +1,6 @@
+venv_pet
+.env
+*fastapi_app
+*fine_tuning
+*gradio_app
+*telegram_bot

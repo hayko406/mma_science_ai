@@ -2,7 +2,7 @@ services:
   fastapi:
     image: thayki/fastapi_mma_science
     ports:
-      - "${FASTAPI_PORT:-8001}:${FASTAPI_PORT:-8001}"
+      - "${FASTAPI_PORT:-8002}:${FASTAPI_PORT:-8002}"
     env_file:
       - .env
     deploy:
@@ -18,7 +18,7 @@ services:
   gradio:
     image: thayki/gradio_mma_science
     ports:
-      - "${GRADIO_PORT:-8002}:${GRADIO_PORT:-8002}"
+      - "${GRADIO_PORT:-8003}:${GRADIO_PORT:-8003}"
     env_file:
       - .env
     environment:
